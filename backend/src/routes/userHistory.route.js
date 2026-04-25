@@ -1,8 +1,8 @@
-import { logHistory,getUserHistory } from "../controller/userHistory_controller";
+import { logHistory,getUserHistory } from "../controller/userHistory_controller.js";
 import { Router } from "express";
-import { verifyJWT } from "../middleware.js/auth_middleware";
+import { verifyJWT } from "../middleware.js/auth_middleware.js";
 
 
 const route=Router();
-route.get("/history",getUserHistory);
+route.get("/history",verifyJWT,getUserHistory);
 export default route;

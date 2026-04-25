@@ -1,8 +1,8 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
-import {ApiError} from "../utils/ApiError.js"
-import { User} from "../models/User.js"
+import { ApiError } from "../utils/APiError.js";
+import { User } from "../models/User.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 
 
@@ -191,21 +191,4 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 })
 
 
-export {loginUser,logoutUser,refreshAccessToken,generateAccessAndRefereshTokens,registerUser}
-
-
-
-
-
-
-
-
-
-
-export {
-    registerUser,
-    loginUser,
-    logoutUser,
-    refreshAccessToken,
-
-}
+export {loginUser, logoutUser, refreshAccessToken, generateAccessAndRefereshTokens, registerUser};

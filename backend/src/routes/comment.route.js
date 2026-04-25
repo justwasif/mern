@@ -4,6 +4,6 @@ import { verifyJWT } from "../middleware.js/auth_middleware.js";
 
 const router=Router();
 router.post("/comment",verifyJWT,createComment);
-router.get("/getc",verifyJWT,getCommentByPost);
-router.delete("/delete",verifyJWT,deleteComment)
+router.get("/getc/:postId",verifyJWT,getCommentByPost);
+router.delete("/delete/:id",verifyJWT,deleteComment)
 export default router;

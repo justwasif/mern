@@ -1,4 +1,4 @@
-import { UserHistory } from "../models/UserHistory.js";
+import { UserHistory } from "../models/Userhistory.js";
 import { ApiError } from "../utils/APiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";

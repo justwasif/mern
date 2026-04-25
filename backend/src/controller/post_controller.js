@@ -2,6 +2,7 @@ import {Post} from "../models/Post.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { ApiError } from "../utils/APiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+
 const createproposal=asyncHandler(async(req,res)=>{
     const {content}=req.body;
     if(!content){
@@ -10,12 +11,12 @@ const createproposal=asyncHandler(async(req,res)=>{
     const proposal=await Post.create({
         content,
     });
-    res.status(201).json(201,proposal,"made proposal");
+    res.status(201).json(new ApiResponse(201,proposal,"made proposal"));
 });
 
 const getproposalbyid=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    const proposal=await proposal.findbyid(id).populate("ownerId","username");
+    const proposal=await Post.findById(id).populate("ownerId","username");
     if (!proposal) {
         throw new ApiError(404, "Proposal not found");
     }
