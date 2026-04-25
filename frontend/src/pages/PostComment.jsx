@@ -83,7 +83,7 @@ export default function PostComment() {
         <div style={{ border: '1px solid #ccc', padding: 16, marginBottom: 20 }}>
           <p style={{ margin: 0 }}>{post.content}</p>
           <small style={{ color: '#666' }}>
-            By {post.ownerId?.username || 'unknown'} &mdash; {new Date(post.createdAt).toLocaleString()}
+            By {post.user_id?.username || 'unknown'} &mdash; {new Date(post.createdAt).toLocaleString()}
           </small>
         </div>
       )}
@@ -110,7 +110,7 @@ export default function PostComment() {
         <div key={comment._id} style={{ border: '1px solid #ddd', padding: 12, marginBottom: 8 }}>
           <p style={{ margin: '0 0 6px' }}>{comment.content}</p>
           <small style={{ color: '#666' }}>
-            By {comment.user_id?.name || 'unknown'} &mdash; {new Date(comment.createdAt).toLocaleString()}
+            By {comment.user_id?.username || 'unknown'} &mdash; {new Date(comment.createdAt).toLocaleString()}
           </small>
           {comment.user_id?._id === user?._id && (
             <div style={{ marginTop: 8 }}>

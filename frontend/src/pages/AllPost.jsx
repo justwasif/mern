@@ -14,7 +14,7 @@ export default function AllPost() {
   const fetchPosts = async () => {
     setLoading(true)
     try {
-      const res = await fetch(`${API}/route/post/all post`, {
+      const res = await fetch(`${API}/route/post/allpost`, {
         headers: { Authorization: `Bearer ${token}` },
         credentials: 'include',
       })
@@ -46,7 +46,7 @@ export default function AllPost() {
         >
           <p style={{ margin: '0 0 8px' }}>{post.content}</p>
           <small style={{ color: '#666' }}>
-            By {post.ownerId?.username || 'unknown'} &mdash; {new Date(post.createdAt).toLocaleString()}
+            By {post.user_id?.username || 'unknown'} &mdash; {new Date(post.createdAt).toLocaleString()}
           </small>
           <div style={{ marginTop: 8 }}>
             <button onClick={e => { e.stopPropagation(); navigate(`/post/${post._id}`, { state: { post } }) }}>

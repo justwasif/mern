@@ -1,24 +1,16 @@
-// const { MongoClient } = require('mongodb');
-import { MongoClient } from 'mongodb';
-import dotenv, { config } from "dotenv"
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
-async function runGetStarted() {
-  
-  const uri = process.env.db;
-  const client = new MongoClient(uri);
-
+const runGetStarted = async () => {
   try {
-    console.log(uri);
-    const connected=await client.connect();
-    console.log("connected",client.db().databaseName);
-    
-  } catch(error){
-    console.log("not connected",error.message);
+    const conn = await mongoose.connect(process.env.db);
+    console.log("MongoDB connected:", conn.connection.host);
+  } catch (error) {
+    console.log("DB connection failed:", error.message);
     process.exit(1);
-
-  };
-  
+  }
 };
+
 export default runGetStarted;
