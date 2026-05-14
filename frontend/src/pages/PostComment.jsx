@@ -60,7 +60,7 @@ export default function PostComment() {
   }
 
   const handleDelete = async (commentId) => {
-    if (!window.confirm('Delete this comment?')) return
+   
     try {
       const res = await fetch(`${API}/route/comment/delete/${commentId}`, {
         method: 'DELETE',
@@ -82,9 +82,7 @@ export default function PostComment() {
       {post && (
         <div style={{ border: '1px solid #ccc', padding: 16, marginBottom: 20 }}>
           <p style={{ margin: 0 }}>{post.content}</p>
-          <small style={{ color: '#666' }}>
-            By {post.user_id?.username || 'unknown'} &mdash; {new Date(post.createdAt).toLocaleString()}
-          </small>
+          
         </div>
       )}
 
@@ -104,17 +102,15 @@ export default function PostComment() {
 
       <h3>Comments</h3>
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {!loading && comments.length === 0 && <p>No comments yet.</p>}
+      {error }
+     
       {comments.map(comment => (
         <div key={comment._id} style={{ border: '1px solid #ddd', padding: 12, marginBottom: 8 }}>
           <p style={{ margin: '0 0 6px' }}>{comment.content}</p>
-          <small style={{ color: '#666' }}>
-            By {comment.user_id?.username || 'unknown'} &mdash; {new Date(comment.createdAt).toLocaleString()}
-          </small>
+          
           {comment.user_id?._id === user?._id && (
             <div style={{ marginTop: 8 }}>
-              <button onClick={() => handleDelete(comment._id)} style={{ color: 'red' }}>Delete</button>
+              <button onClick={() => handleDelete(comment._id)} >Delete</button>
             </div>
           )}
         </div>

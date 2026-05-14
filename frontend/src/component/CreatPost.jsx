@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const API = 'http://localhost:4000'
 
@@ -6,6 +7,7 @@ export default function CreatePost({ token, onCreated }) {
   const [content, setContent] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const navigat=useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,7 +27,8 @@ export default function CreatePost({ token, onCreated }) {
       const data = await res.json()
       if (!res.ok) throw new Error(data.message || 'Failed to create post')
       setContent('')
-      onCreated()
+      navigat("/")
+      
     } catch (err) {
       setError(err.message)
     } finally {
@@ -45,7 +48,6 @@ export default function CreatePost({ token, onCreated }) {
           required
           style={{ display: 'block', width: '100%', padding: 8, boxSizing: 'border-box', marginBottom: 8 }}
         />
-        {error && <p style={{ color: 'red', margin: '4px 0' }}>{error}</p>}
         <button type="submit" disabled={loading}>
           {loading ? 'Posting...' : 'Post'}
         </button>
