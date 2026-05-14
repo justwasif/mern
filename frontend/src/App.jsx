@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import AllPost from './pages/AllPost'
 import PostComment from './pages/PostComment'
 import UserHistory from './pages/UserHistory'
+import CreatePost from './component/CreatPost'
 
 function PrivateRoute({ children }) {
   const token = localStorage.getItem('accessToken')
@@ -28,6 +29,7 @@ export default function App() {
           <Route index element={<AllPost />} />
           <Route path="post/:postId" element={<PostComment />} />
           <Route path="history" element={<UserHistory />} />
+          <Route path="creat_post" element={<CreatePost/>}/>
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -23,7 +23,6 @@ export default function Signup() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.message || 'Registration failed')
-      setSuccess('Account created! Redirecting to login...')
       navigate('/login')
     } catch (err) {
       setError(err.message)
@@ -66,10 +65,8 @@ export default function Signup() {
             style={{ display: 'block', width: '100%', padding: 8, marginTop: 4, boxSizing: 'border-box' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
         <button type="submit" disabled={loading} style={{ padding: '8px 20px', marginRight: 10 }}>
-          {loading ? 'Registering...' : 'Register'}
+          register
         </button>
         <Link to="/login">Login</Link>
       </form>

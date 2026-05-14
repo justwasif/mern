@@ -40,8 +40,6 @@ export default function UserHistory() {
             <span
               style={{
                 padding: '2px 8px',
-                background: item.action === 'CREATE_COMMENT' ? '#d4edda' : '#f8d7da',
-                color: item.action === 'CREATE_COMMENT' ? '#155724' : '#721c24',
                 borderRadius: 4,
                 fontSize: 12,
                 fontWeight: 'bold',
@@ -49,7 +47,6 @@ export default function UserHistory() {
             >
               {item.action}
             </span>
-            <small style={{ color: '#666' }}>{new Date(item.createdAt).toLocaleString()}</small>
           </div>
           {item.comment_id && !item.comment_id.is_deleted && (
             <p style={{ margin: '8px 0 0', fontSize: 14 }}>

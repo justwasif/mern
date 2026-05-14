@@ -2,6 +2,7 @@ import { Comment } from "../models/Comment.js";
 import { ApiError } from "../utils/APiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { logHistory } from "./userHistory_controller.js";
 
 
 const createComment = asyncHandler(async (req, res) => {
@@ -16,6 +17,13 @@ const createComment = asyncHandler(async (req, res) => {
       user_id: req.user_id,
       post_id,
       content
+    });
+
+    await logHistory({
+      user_id: req.user_id,
+      action: "CREATE_COMMENT",
+      comment_id: comment._id,
+      post_id
     });
 
     return res
@@ -35,7 +43,7 @@ const getCommentByPost = asyncHandler(async (req, res) => {
       post_id: postId,
       is_deleted: false
     })
-      .populate("user_id", "name")
+      .populate("user_id", "name username")
       .sort({ createdAt: -1 });
 
     return res
@@ -63,6 +71,13 @@ const deleteComment = asyncHandler(async (req, res) => {
 
     comment.is_deleted = true;
     await comment.save();
+
+    await logHistory({
+      user_id: req.user_id,
+      action: "DELETE_COMMENT",
+      comment_id: comment._id,
+      post_id: comment.post_id
+    });
 
     return res
       .status(200)

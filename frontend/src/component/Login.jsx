@@ -37,7 +37,7 @@ export default function Login() {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: 12 }}>
-          <label>Email or Username</label>
+          <label>Email</label>
           <input
             type="text"
             value={form.email}
@@ -56,9 +56,8 @@ export default function Login() {
             style={{ display: 'block', width: '100%', padding: 8, marginTop: 4, boxSizing: 'border-box' }}
           />
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit" disabled={loading} style={{ padding: '8px 20px', marginRight: 10 }}>
-          {loading ? 'Logging in...' : 'Login'}
+            login
         </button>
         <Link to="/signup">Sign Up</Link>
       </form>

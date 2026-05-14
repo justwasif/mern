@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import CreatePost from '../component/CreatPost'
+
 
 const API = 'http://localhost:4000'
 
@@ -35,7 +35,7 @@ export default function AllPost() {
 
   return (
     <div>
-      <CreatePost token={token} onCreated={fetchPosts} />
+      
       <h2>All Posts</h2>
       {posts.length === 0 && <p>No posts yet.</p>}
       {posts.map(post => (
@@ -45,9 +45,7 @@ export default function AllPost() {
           onClick={() => navigate(`/post/${post._id}`, { state: { post } })}
         >
           <p style={{ margin: '0 0 8px' }}>{post.content}</p>
-          <small style={{ color: '#666' }}>
-            By {post.user_id?.username || 'unknown'} &mdash; {new Date(post.createdAt).toLocaleString()}
-          </small>
+        
           <div style={{ marginTop: 8 }}>
             <button onClick={e => { e.stopPropagation(); navigate(`/post/${post._id}`, { state: { post } }) }}>
               View Comments

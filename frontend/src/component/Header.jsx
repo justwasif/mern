@@ -7,18 +7,18 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('user')
-    navigate('/login', { replace: true })
+    navigate('/login')
   }
 
   return (
-    <header style={{ borderBottom: '1px solid #ccc', padding: '12px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <header style={{padding: '12px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-        <strong>Forum</strong>
+        <h3>Forum</h3>
         <NavLink to="/" end>All Posts</NavLink>
         <NavLink to="/history">My History</NavLink>
+        <NavLink to="creat_post">post</NavLink>
       </div>
       <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <span>Hi, <strong>{user?.username}</strong></span>
         <button onClick={handleLogout}>Logout</button>
       </div>
     </header>
